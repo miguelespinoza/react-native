@@ -4,6 +4,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'maven'
 
 apply plugin: 'de.undercouch.download'
+apply plugin: 'com.neenbedankt.android-apt'
 
 import de.undercouch.gradle.tasks.download.Download
 import org.apache.tools.ant.taskdefs.condition.Os
@@ -286,6 +287,7 @@ dependencies {
     compile 'com.squareup.okhttp3:okhttp-ws:3.4.1'
     compile 'com.squareup.okio:okio:1.9.0'
     compile 'org.webkit:android-jsc:r174650'
+    apt project(':processor');
 
     testCompile "junit:junit:${JUNIT_VERSION}"
     testCompile "org.powermock:powermock-api-mockito:${POWERMOCK_VERSION}"
