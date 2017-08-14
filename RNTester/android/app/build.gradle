@@ -84,7 +84,7 @@ def enableProguardInReleaseBuilds = false
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.1"
+    buildToolsVersion '25.0.0'
 
     defaultConfig {
         applicationId "com.facebook.react.uiapp"
@@ -95,6 +95,7 @@ android {
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     signingConfigs {
         release {
@@ -135,9 +136,19 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:23.0.1'
-
     // Build React Native from source
     compile project(':ReactAndroid')
+    // AndroidJUnitRunner and JUnit Rules
+    androidTestCompile ('com.android.support.test:runner:0.5'){
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+    androidTestCompile ('com.android.support.test:rules:0.5'){
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+    androidTestCompile ('com.android.support.test.espresso:espresso-core:2.2.2'){
+        exclude module: 'jsr305'
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
 }
