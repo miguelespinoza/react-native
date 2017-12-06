@@ -72,6 +72,7 @@ public class ReactModuleSpecProcessor extends AbstractProcessor {
 
   @Override
   public synchronized void init(ProcessingEnvironment processingEnv) {
+    System.out.println("ReactModuleSpecProcessor init");
     super.init(processingEnv);
 
     mFiler = processingEnv.getFiler();
@@ -81,6 +82,7 @@ public class ReactModuleSpecProcessor extends AbstractProcessor {
 
   @Override
   public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
+    System.out.println("ReactModuleSpecProcessor process");
     Set<? extends Element> reactModuleListElements = roundEnv.getElementsAnnotatedWith(
       ReactModuleList.class);
     for (Element reactModuleListElement : reactModuleListElements) {
